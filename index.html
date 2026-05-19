@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RockShield Epoxy Coating — Professional garage floor epoxy coatings. Durable, beautiful, built to last. Free quotes available." />
+  <title>RockShield Epoxy Coating | Garage Floor Specialists</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --navy:  #0B2545;
+      --blue:  #1B6FC8;
+      --grey:  #F7F8FA;
+      --border:#E4E7EC;
+      --muted: #6B7280;
+      --text:  #111;
+    }
+
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── NAV ───────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 100px;
+    }
+    .nav-cta-wrap { display: flex; }
+    .nav-logo img {
+      height: 90px; width: auto; display: block;
+      mix-blend-mode: multiply;
+    }
+    .nav-logo-fallback {
+      font-size: 22px; font-weight: 900; color: var(--navy); letter-spacing: -0.5px;
+    }
+    .nav-logo-fallback span { color: var(--blue); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--muted); font-size: 14px; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      display: inline-block;
+      background: var(--navy); color: #fff;
+      padding: 11px 28px; border-radius: 6px;
+      font-size: 14px; font-weight: 700;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue); }
+
+    /* ── HERO ──────────────────────────────── */
+    .hero {
+      padding: 160px 0 80px;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-shield {
+      position: absolute;
+      top: 80px; left: 50%;
+      transform: translateX(-50%);
+      width: 520px; height: auto;
+      opacity: 0.13;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      z-index: 0;
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-headline {
+      font-size: clamp(56px, 7vw, 96px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .hero-headline em { font-style: normal; color: var(--blue); }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 56px;
+    }
+
+    /* 3-card row */
+    .hero-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .hero-card {
+      display: flex; flex-direction: column;
+    }
+    .hero-card-img {
+      width: 100%; height: 220px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      background: var(--grey);
+      position: relative;
+    }
+    .hero-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    /* Fallback gradients if photos don't load */
+    .hero-card-img.c1 { background: linear-gradient(135deg, #c8a96e 0%, #e8d5a3 50%, #b8954a 100%); }
+    .hero-card-img.c2 { background: linear-gradient(135deg, #d4e4f0 0%, #a8c8e0 50%, #7aabce 100%); }
+    .hero-card-img.c3 { background: linear-gradient(135deg, #2a2e35 0%, #3d4450 50%, #565e6e 100%); }
+    .hero-card-cat {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.04em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .hero-card-title {
+      font-size: 20px; font-weight: 800;
+      letter-spacing: -0.4px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .hero-card-desc {
+      font-size: 13px; color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .hero-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--blue); font-size: 14px; font-weight: 600;
+      transition: gap 0.2s;
+    }
+    .hero-card-link:hover { gap: 10px; }
+    .hero-card-link svg { transition: transform 0.2s; }
+    .hero-card-link:hover svg { transform: translateX(3px); }
+
+    /* ── TRUST BAR ─────────────────────────── */
+    .trust-bar {
+      background: var(--navy);
+      padding: 18px 0;
+    }
+    .trust-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 56px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600;
+    }
+    .trust-item svg { color: #60A5FA; flex-shrink: 0; }
+
+    /* ── WHY US ────────────────────────────── */
+    .why { padding: 100px 0; background: var(--grey); }
+    .why-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .section-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 14px; display: block;
+    }
+    .why h2 {
+      font-size: clamp(30px, 3.5vw, 44px);
+      font-weight: 900; letter-spacing: -1.5px;
+      color: var(--text); margin-bottom: 16px; line-height: 1.1;
+    }
+    .why .lead { color: var(--muted); margin-bottom: 40px; font-size: 16px; }
+    .why-points { display: flex; flex-direction: column; gap: 22px; }
+    .why-point { display: flex; gap: 16px; align-items: flex-start; }
+    .why-point-icon {
+      width: 42px; height: 42px;
+      background: #DBEAFE; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .why-point-icon svg { color: var(--blue); }
+    .why-point h4 { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+    .why-point p { font-size: 13px; color: var(--muted); margin: 0; }
+
+    /* Stats grid */
+    .why-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .stat-card {
+      background: #fff; border-radius: 14px;
+      padding: 32px 24px; text-align: center;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(11,37,69,0.06);
+    }
+    .stat-card.featured {
+      grid-column: span 2;
+      background: var(--navy); border-color: var(--navy);
+    }
+    .stat-num {
+      font-size: 52px; font-weight: 900;
+      color: var(--navy); letter-spacing: -2px;
+      line-height: 1; margin-bottom: 6px;
+    }
+    .stat-card.featured .stat-num { font-size: 64px; color: #60A5FA; }
+    .stat-desc { font-size: 13px; color: var(--muted); }
+    .stat-card.featured .stat-desc { color: rgba(255,255,255,0.5); }
+
+    /* ── PROCESS ───────────────────────────── */
+    .process { padding: 100px 0; background: #fff; }
+    .process-header { text-align: center; margin-bottom: 64px; }
+    .process-header h2 {
+      font-size: clamp(30px, 3.5vw, 44px);
+      font-weight: 900; letter-spacing: -1.5px; margin-bottom: 12px;
+    }
+    .process-header p { color: var(--muted); font-size: 16px; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute;
+      top: 31px; left: calc(12.5% + 16px); right: calc(12.5% + 16px);
+      height: 2px; background: var(--border); z-index: 0;
+    }
+    .step { text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+    .step-num {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: #fff; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 20px; font-weight: 900; color: var(--muted);
+      transition: all 0.2s;
+    }
+    .step:hover .step-num {
+      background: var(--navy); border-color: var(--navy); color: #fff;
+    }
+    .step h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── PROCESS PHOTO ─────────────────────── */
+    .process-photo {
+      margin-top: 56px;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 340px;
+      background: var(--grey);
+    }
+    .process-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* ── GALLERY ───────────────────────────── */
+    .gallery { padding: 100px 0; background: var(--grey); }
+    .gallery-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 40px;
+    }
+    .gallery-header h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900; letter-spacing: -1.2px;
+    }
+    .gallery-header p { color: var(--muted); font-size: 14px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 220px 220px;
+      gap: 12px;
+    }
+    .g-item {
+      border-radius: 12px; overflow: hidden;
+      position: relative; background: var(--border);
+    }
+    .g-item:first-child { grid-row: span 2; }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; }
+    .g-overlay {
+      position: absolute; inset: 0;
+      background: transparent; transition: background 0.2s;
+    }
+    .g-item:hover .g-overlay { background: rgba(27,111,200,0.12); }
+
+    /* ── TESTIMONIALS ──────────────────────── */
+    .testi { padding: 100px 0; background: #fff; }
+    .testi-header { text-align: center; margin-bottom: 56px; }
+    .testi-header h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900; letter-spacing: -1.2px; margin-bottom: 10px;
+    }
+    .testi-header p { color: var(--muted); }
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .testi-card {
+      background: var(--grey); border-radius: 14px;
+      padding: 32px; border: 1px solid var(--border);
+    }
+    .testi-stars { color: #F59E0B; font-size: 15px; margin-bottom: 16px; letter-spacing: 2px; }
+    .testi-text { font-size: 14px; line-height: 1.75; color: #374151; margin-bottom: 24px; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800; font-size: 14px; flex-shrink: 0;
+    }
+    .testi-name { font-size: 14px; font-weight: 700; }
+    .testi-loc { font-size: 12px; color: var(--muted); }
+
+    /* ── CTA BANNER ────────────────────────── */
+    .cta-banner { background: var(--navy); padding: 80px 0; }
+    .cta-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 40px;
+    }
+    .cta-text h2 {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 900; color: #fff;
+      letter-spacing: -1.5px; margin-bottom: 8px;
+    }
+    .cta-text p { color: rgba(255,255,255,0.6); font-size: 16px; }
+    .btn-white {
+      display: inline-block;
+      background: #fff; color: var(--navy);
+      padding: 15px 36px; border-radius: 6px;
+      font-size: 14px; font-weight: 800;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-white:hover { background: #EFF6FF; transform: translateY(-2px); }
+
+    /* ── CONTACT ───────────────────────────── */
+    .contact { padding: 100px 0; background: #fff; }
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+    }
+    .contact-info .section-tag { color: var(--blue); }
+    .contact-info h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900; letter-spacing: -1.2px;
+      color: var(--text); margin-bottom: 14px;
+    }
+    .contact-info .lead { color: var(--muted); margin-bottom: 40px; font-size: 15px; }
+    .contact-details { display: flex; flex-direction: column; gap: 18px; }
+    .contact-detail {
+      display: flex; align-items: center;
+      gap: 14px; color: #374151; font-size: 15px;
+    }
+    .contact-detail svg { color: var(--blue); flex-shrink: 0; }
+
+    /* Form */
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: #475569;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--grey); border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 13px 16px;
+      color: var(--text); font-family: 'Inter', sans-serif;
+      font-size: 14px; outline: none; transition: border 0.2s; width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #CBD5E1; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(27,111,200,0.1);
+      background: #fff;
+    }
+    .form-group select { cursor: pointer; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      background: var(--navy); color: #fff;
+      border: none; border-radius: 8px; padding: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s; width: 100%;
+    }
+    .form-submit:hover { background: var(--blue); }
+
+    /* ── FOOTER ────────────────────────────── */
+    footer {
+      background: var(--navy);
+      padding: 48px 0 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px; flex-wrap: wrap; gap: 24px;
+    }
+    .footer-logo img { height: 70px; width: auto; }
+    .footer-logo-fallback {
+      font-size: 20px; font-weight: 900; color: #fff;
+    }
+    .footer-logo-fallback span { color: #60A5FA; }
+    .footer-nav { display: flex; gap: 28px; }
+    .footer-nav a {
+      color: rgba(255,255,255,0.45); font-size: 13px; transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 12px; }
+
+    /* ── REVEAL ────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <div class="nav-logo">
+          <img src="rockshield-logo.png" alt="RockShield Epoxy Coating"
+            onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'" />
+          <div class="nav-logo-fallback" style="display:none;">Rock<span>Shield</span></div>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-cta-wrap">
+          <a href="#contact" class="nav-cta">Free Quote</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="services">
+    <img class="hero-shield" src="rockshield-logo.png" alt="" aria-hidden="true" />
+    <div class="container">
+      <h1 class="hero-headline reveal">Transform your <em>garage.</em></h1>
+      <p class="hero-sub reveal">Discover durable and stylish epoxy flooring solutions built to last for years.</p>
+
+      <div class="hero-cards reveal">
+
+        <div class="hero-card">
+          <div class="hero-card-img c1">
+            <img src="hero-1.jpg" alt="Custom epoxy flooring solution" onerror="this.style.display='none'" />
+          </div>
+          <span class="hero-card-cat">Garage flooring</span>
+          <h3 class="hero-card-title">Custom solutions</h3>
+          <p class="hero-card-desc">Tailored epoxy systems for unique garage needs, designed around your space and lifestyle.</p>
+          <a href="#contact" class="hero-card-link">
+            Explore
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-img c2">
+            <img src="hero-2.jpg" alt="Innovative epoxy floor designs" onerror="this.style.display='none'" />
+          </div>
+          <span class="hero-card-cat">Garage flooring</span>
+          <h3 class="hero-card-title">Innovative designs</h3>
+          <p class="hero-card-desc">Enhance your space with cutting-edge epoxy technology including metallic and flake finishes.</p>
+          <a href="#contact" class="hero-card-link">
+            Discover
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-img c3">
+            <img src="hero-3.jpg" alt="Scalable epoxy flooring solutions" onerror="this.style.display='none'" />
+          </div>
+          <span class="hero-card-cat">Garage flooring</span>
+          <h3 class="hero-card-title">Scalable solutions</h3>
+          <p class="hero-card-desc">Adaptable systems for evolving garage projects, from single-car to commercial multi-bay.</p>
+          <a href="#contact" class="hero-card-link">
+            Find out
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-item">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Licensed & Experienced
+        </div>
+        <div class="trust-item">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          1 & 2 Day Installation
+        </div>
+        <div class="trust-item">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          10-Year Warranty
+        </div>
+        <div class="trust-item">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Free Estimates
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="why-inner">
+        <div class="reveal">
+          <span class="section-tag">Why RockShield</span>
+          <h2>We Don't Cut Corners. Ever.</h2>
+          <p class="lead">Most epoxy failures happen because of poor surface prep. We grind and profile every floor before coating so yours lasts years, not months.</p>
+          <div class="why-points">
+            <div class="why-point">
+              <div class="why-point-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div>
+                <h4>Diamond Grinding Prep</h4>
+                <p>Industrial diamond grinders open the concrete for maximum adhesion, every time.</p>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-point-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div>
+                <h4>100% Solids Epoxy</h4>
+                <p>Commercial-grade materials only, not the water-based coatings from hardware stores.</p>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-point-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div>
+                <h4>Done in 1 or 2 Days</h4>
+                <p>Most residential garages are fully coated and ready within 1–2 days of our arrival.</p>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-point-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div>
+                <h4>10-Year Warranty</h4>
+                <p>If it peels, chips, or fails, we come back and fix it. Period.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-stats reveal">
+          <div class="stat-card featured">
+            <div class="stat-num">10</div>
+            <div class="stat-desc">Year warranty on every install</div>
+          </div>
+          <div class="stat-card featured">
+            <div class="stat-num">1–2</div>
+            <div class="stat-desc">Day installs, start to finish</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="process-header reveal">
+        <span class="section-tag">How It Works</span>
+        <h2>Simple From Start to Finish</h2>
+        <p>Four straightforward steps from your first call to your finished floor.</p>
+      </div>
+      <div class="process-steps reveal">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Free Quote</h4>
+          <p>Fill out our form or call us. Clear, no-surprise pricing within 24 hours.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Schedule Install</h4>
+          <p>Pick a date that works. We confirm everything and send reminders.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>We Prep & Coat</h4>
+          <p>We arrive on time, grind the surface, apply your chosen system, and clean up.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>Enjoy Your Floor</h4>
+          <p>Ready for light use next day, fully cured in 72 hours. Drive in and enjoy.</p>
+        </div>
+      </div>
+      <!-- Diamond grinding prep photo -->
+      <div class="process-photo reveal">
+        <img src="process-prep.jpg" alt="Diamond grinding floor preparation" onerror="this.parentElement.style.display='none'" />
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="gallery-header reveal">
+        <div>
+          <span class="section-tag">Our Work</span>
+          <h2>Fresh Off the Garage Floor</h2>
+        </div>
+        <p>Real jobs. Real results.</p>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="g-item">
+          <img src="gallery-1.jpg" alt="Epoxy floor — open garage after install" />
+          <div class="g-overlay"></div>
+        </div>
+        <div class="g-item">
+          <img src="gallery-2.jpg" alt="Light gray flake epoxy floor" />
+          <div class="g-overlay"></div>
+        </div>
+        <div class="g-item">
+          <img src="gallery-3.jpg" alt="Dark charcoal epoxy floor" />
+          <div class="g-overlay"></div>
+        </div>
+        <div class="g-item">
+          <img src="gallery-4.jpg" alt="Epoxy floor texture close-up" />
+          <div class="g-overlay"></div>
+        </div>
+        <div class="g-item">
+          <img src="gallery-5.jpg" alt="Large garage epoxy flooring" />
+          <div class="g-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi">
+    <div class="container">
+      <div class="testi-header reveal">
+        <span class="section-tag">Happy Customers</span>
+        <h2>Don't Take Our Word for It</h2>
+        <p>From homeowners to contractors, here's what people say.</p>
+      </div>
+      <div class="testi-grid reveal">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"RockShield did my two-car garage last spring and it still looks brand new. The flake system they recommended hides dirt and the anti-slip finish is great for winter. Best money I've spent on the house."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#0B2545;">MR</div>
+            <div><div class="testi-name">Mike R.</div><div class="testi-loc">Homeowner</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Fast, clean, and professional. Done in one day just like they promised. The metallic finish is absolutely stunning and every person who comes over asks about it."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#1B6FC8;">JL</div>
+            <div><div class="testi-name">Jessica L.</div><div class="testi-loc">Garage Renovation</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"I've had two other companies do epoxy before and both peeled within a year. RockShield explained why — proper grinding prep — and their floor is holding up perfectly two years later. The real deal."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#163A5F;">DT</div>
+            <div><div class="testi-name">Dave T.</div><div class="testi-loc">Repeat Customer</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h2>Ready for a Floor You're Proud Of?</h2>
+          <p>Free estimates. No pressure. Just a straight answer on price and timeline.</p>
+        </div>
+        <a href="#contact" class="btn-white">Get a Free Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="reveal">
+          <span class="section-tag">Get in Touch</span>
+          <h2>Let's Talk About Your Floor</h2>
+          <p class="lead">Fill out the form and we'll get back to you within one business day with a clear quote and available dates.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.55 5.55l1.07-.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+              <span>636-626-0015</span>
+            </div>
+            <div class="contact-detail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Rescano@rockshieldepoxycoating.com</span>
+            </div>
+            <div class="contact-detail">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Mon–Fri 7am–6pm, Sat by appointment</span>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="John" />
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Smith" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" placeholder="(555) 123-4567" />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="john@example.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Garage Size</label>
+              <select>
+                <option value="">Select size...</option>
+                <option>1-Car Garage (approx. 200 sq ft)</option>
+                <option>2-Car Garage (approx. 400 sq ft)</option>
+                <option>3-Car Garage (approx. 600 sq ft)</option>
+                <option>Oversized / Commercial</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Finish Type</label>
+              <select>
+                <option value="">Select finish...</option>
+                <option>Solid Color Epoxy</option>
+                <option>Flake / Chip System</option>
+                <option>Metallic Epoxy</option>
+                <option>Not Sure Yet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Additional Details</label>
+              <textarea placeholder="Tell us about your floor: any cracks, stains, existing coatings, or anything else we should know..."></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submit-btn">Request Free Quote</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <img src="rockshield-logo.png" alt="RockShield Epoxy Coating"
+            onerror="this.style.display='none';document.querySelector('.footer-logo-fallback').style.display='block'" />
+          <div class="footer-logo-fallback" style="display:none;">Rock<span>Shield</span></div>
+        </div>
+        <nav class="footer-nav">
+          <a href="#services">Services</a>
+          <a href="#why">Why Us</a>
+          <a href="#process">Process</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 RockShield Epoxy Coating. All rights reserved.</p>
+        <p style="color:rgba(255,255,255,0.2);">Professional garage floor coatings.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 70);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => obs.observe(el));
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Quote Sent!';
+      btn.style.background = '#16a34a';
+      setTimeout(() => { btn.textContent = 'Request Free Quote'; btn.style.background = ''; }, 3000);
+    }
+  </script>
+</body>
+</html>
