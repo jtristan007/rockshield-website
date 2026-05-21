@@ -443,6 +443,121 @@
     /* ── REVEAL ────────────────────────────── */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── HAMBURGER ─────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+      background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--navy); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed; top: 84px; left: 0; right: 0;
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: 20px 24px 28px;
+      flex-direction: column; gap: 0;
+      z-index: 99;
+      box-shadow: 0 8px 24px rgba(11,37,69,0.1);
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      display: block; padding: 14px 0;
+      font-size: 16px; font-weight: 600; color: var(--navy);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-drawer a:last-child { border-bottom: none; }
+    .nav-drawer .drawer-cta {
+      margin-top: 16px;
+      background: var(--navy); color: #fff;
+      text-align: center; border-radius: 8px;
+      padding: 14px; font-size: 15px; font-weight: 700;
+      border-bottom: none;
+    }
+
+    /* ── RESPONSIVE ────────────────────────── */
+    @media (max-width: 768px) {
+
+      .container { padding: 0 20px; }
+
+      /* Nav */
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-inner { height: 68px; }
+      .nav-logo img { height: 52px; }
+      .nav-drawer { top: 68px; }
+
+      /* Hero */
+      .hero { padding: 100px 0 60px; }
+      .hero-sub { font-size: 16px; margin-bottom: 36px; }
+      .hero-cards { grid-template-columns: 1fr; gap: 32px; }
+      .hero-card-img { height: 200px; }
+
+      /* Trust bar */
+      .trust-inner { gap: 20px; justify-content: flex-start; }
+      .trust-item { font-size: 12px; }
+
+      /* Why Us */
+      .why { padding: 64px 0; }
+      .why-inner { grid-template-columns: 1fr; gap: 40px; }
+      .why-stats { grid-template-columns: 1fr 1fr; }
+      .stat-card.featured { grid-column: span 2; }
+      .stat-num { font-size: 40px; }
+      .stat-card.featured .stat-num { font-size: 52px; }
+
+      /* Process */
+      .process { padding: 64px 0; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-steps::before { display: none; }
+
+      /* Gallery */
+      .gallery { padding: 64px 0; }
+      .gallery-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 180px 180px 180px;
+      }
+      .g-item.g-featured { grid-row: span 1; }
+
+      /* Testimonials */
+      .testi { padding: 64px 0; }
+      .testi-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      /* CTA */
+      .cta-banner { padding: 56px 0; }
+      .cta-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .btn-white { width: 100%; text-align: center; }
+
+      /* Contact */
+      .contact { padding: 64px 0; }
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      /* Footer */
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-nav { flex-wrap: wrap; gap: 16px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 200px);
+      }
+      .process-steps { grid-template-columns: 1fr; gap: 24px; }
+      .why-stats { grid-template-columns: 1fr; }
+      .stat-card.featured { grid-column: span 1; }
+    }
   </style>
 </head>
 <body>
@@ -464,9 +579,22 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
         <a href="#contact" class="nav-cta">Free Quote</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#services" class="drawer-link">Services</a>
+    <a href="#why" class="drawer-link">Why Us</a>
+    <a href="#process" class="drawer-link">Process</a>
+    <a href="#gallery" class="drawer-link">Gallery</a>
+    <a href="#contact" class="drawer-link">Contact</a>
+    <a href="#contact" class="drawer-cta">Get a Free Quote</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="services">
@@ -861,6 +989,21 @@
       });
     }, { threshold: 0.08 });
     reveals.forEach(el => obs.observe(el));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('nav-drawer');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      drawer.classList.toggle('open');
+    });
+    // Close drawer when a link is clicked
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        drawer.classList.remove('open');
+      });
+    });
 
     function handleSubmit(e) {
       e.preventDefault();
