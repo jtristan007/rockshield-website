@@ -41,13 +41,9 @@
     }
     .nav-inner {
       display: flex; align-items: center;
-      justify-content: space-between; height: 100px;
+      justify-content: space-between; height: 84px;
     }
-    .nav-cta-wrap { display: flex; }
-    .nav-logo img {
-      height: 90px; width: auto; display: block;
-      mix-blend-mode: multiply;
-    }
+    .nav-logo img { height: 68px; width: auto; display: block; }
     .nav-logo-fallback {
       font-size: 22px; font-weight: 900; color: var(--navy); letter-spacing: -0.5px;
     }
@@ -69,22 +65,9 @@
 
     /* ── HERO ──────────────────────────────── */
     .hero {
-      padding: 160px 0 80px;
+      padding: 140px 0 80px;
       background: #fff;
-      position: relative;
-      overflow: hidden;
     }
-    .hero-shield {
-      position: absolute;
-      top: 80px; left: 50%;
-      transform: translateX(-50%);
-      width: 520px; height: auto;
-      opacity: 0.13;
-      pointer-events: none;
-      mix-blend-mode: multiply;
-      z-index: 0;
-    }
-    .hero .container { position: relative; z-index: 1; }
     .hero-headline {
       font-size: clamp(56px, 7vw, 96px);
       font-weight: 900;
@@ -119,10 +102,14 @@
       position: relative;
     }
     .hero-card-img img { width: 100%; height: 100%; object-fit: cover; }
-    /* Fallback gradients if photos don't load */
     .hero-card-img.c1 { background: linear-gradient(135deg, #c8a96e 0%, #e8d5a3 50%, #b8954a 100%); }
     .hero-card-img.c2 { background: linear-gradient(135deg, #d4e4f0 0%, #a8c8e0 50%, #7aabce 100%); }
     .hero-card-img.c3 { background: linear-gradient(135deg, #2a2e35 0%, #3d4450 50%, #565e6e 100%); }
+    .hero-card-img-icon {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0.25;
+    }
     .hero-card-cat {
       font-size: 12px; font-weight: 600;
       letter-spacing: 0.04em; color: var(--muted);
@@ -248,18 +235,6 @@
     .step h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
     .step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-    /* ── PROCESS PHOTO ─────────────────────── */
-    .process-photo {
-      margin-top: 56px;
-      border-radius: 16px;
-      overflow: hidden;
-      height: 340px;
-      background: var(--grey);
-    }
-    .process-photo img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-
     /* ── GALLERY ───────────────────────────── */
     .gallery { padding: 100px 0; background: var(--grey); }
     .gallery-header {
@@ -271,23 +246,68 @@
       font-weight: 900; letter-spacing: -1.2px;
     }
     .gallery-header p { color: var(--muted); font-size: 14px; }
+
+    /* 10-photo grid */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 220px 220px;
+      grid-template-rows: 260px 260px 220px 220px;
       gap: 12px;
     }
     .g-item {
       border-radius: 12px; overflow: hidden;
-      position: relative; background: var(--border);
+      position: relative;
+      background: var(--border);
     }
-    .g-item:first-child { grid-row: span 2; }
-    .g-item img { width: 100%; height: 100%; object-fit: cover; }
-    .g-overlay {
+    /* Large feature: col 1, spans rows 1–2 */
+    .g-item.g-featured { grid-row: span 2; }
+    /* Bottom-left wide: spans 2 cols */
+    .g-item.g-wide { grid-column: span 2; }
+
+    .g-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .g-item:hover img { transform: scale(1.04); }
+
+    /* Fallback placeholder shown when image fails to load */
+    .g-item::before {
+      content: '';
       position: absolute; inset: 0;
-      background: transparent; transition: background 0.2s;
+      z-index: 0;
     }
-    .g-item:hover .g-overlay { background: rgba(27,111,200,0.12); }
+    .g-item:nth-child(1)::before  { background: linear-gradient(160deg,#1a2a45,#0d3a6e); }
+    .g-item:nth-child(2)::before  { background: linear-gradient(135deg,#2a2e35,#565e6e); }
+    .g-item:nth-child(3)::before  { background: linear-gradient(135deg,#d4e4f0,#a8c8e0); }
+    .g-item:nth-child(4)::before  { background: linear-gradient(135deg,#1a3a6e,#3a6eb8); }
+    .g-item:nth-child(5)::before  { background: linear-gradient(135deg,#c8a96e,#e8d5a3); }
+    .g-item:nth-child(6)::before  { background: linear-gradient(135deg,#3a3a4a,#6a6a7e); }
+    .g-item:nth-child(7)::before  { background: linear-gradient(135deg,#c8c8d8,#e8e8f0); }
+    .g-item:nth-child(8)::before  { background: linear-gradient(135deg,#2a4a2e,#4a7a5e); }
+    .g-item:nth-child(9)::before  { background: linear-gradient(135deg,#1a3a8e,#4a6ab8); }
+    .g-item:nth-child(10)::before { background: linear-gradient(135deg,#e8e8e8,#c0c0cc); }
+
+    .g-item img { position: relative; z-index: 1; }
+
+    .g-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: transparent; transition: background 0.25s;
+    }
+    .g-item:hover .g-overlay { background: rgba(11,37,69,0.18); }
+
+    /* Caption that appears on hover */
+    .g-caption {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      padding: 32px 20px 16px;
+      background: linear-gradient(to top, rgba(11,37,69,0.75) 0%, transparent 100%);
+      color: #fff;
+      font-size: 13px; font-weight: 600;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .g-item:hover .g-caption { opacity: 1; transform: none; }
 
     /* ── TESTIMONIALS ──────────────────────── */
     .testi { padding: 100px 0; background: #fff; }
@@ -404,7 +424,7 @@
       justify-content: space-between;
       margin-bottom: 32px; flex-wrap: wrap; gap: 24px;
     }
-    .footer-logo img { height: 70px; width: auto; }
+    .footer-logo img { height: 50px; width: auto; }
     .footer-logo-fallback {
       font-size: 20px; font-weight: 900; color: #fff;
     }
@@ -435,7 +455,7 @@
       <div class="nav-inner">
         <div class="nav-logo">
           <img src="rockshield-logo.png" alt="RockShield Epoxy Coating"
-            onerror="this.style.display='none';document.querySelector('.nav-logo-fallback').style.display='block'" />
+            onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <div class="nav-logo-fallback" style="display:none;">Rock<span>Shield</span></div>
         </div>
         <ul class="nav-links">
@@ -445,16 +465,13 @@
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="nav-cta-wrap">
-          <a href="#contact" class="nav-cta">Free Quote</a>
-        </div>
+        <a href="#contact" class="nav-cta">Free Quote</a>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="services">
-    <img class="hero-shield" src="rockshield-logo.png" alt="" aria-hidden="true" />
     <div class="container">
       <h1 class="hero-headline reveal">Transform your <em>garage.</em></h1>
       <p class="hero-sub reveal">Discover durable and stylish epoxy flooring solutions built to last for years.</p>
@@ -463,7 +480,9 @@
 
         <div class="hero-card">
           <div class="hero-card-img c1">
-            <img src="hero-1.jpg" alt="Custom epoxy flooring solution" onerror="this.style.display='none'" />
+            <div class="hero-card-img-icon">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
           </div>
           <span class="hero-card-cat">Garage flooring</span>
           <h3 class="hero-card-title">Custom solutions</h3>
@@ -476,7 +495,9 @@
 
         <div class="hero-card">
           <div class="hero-card-img c2">
-            <img src="hero-2.jpg" alt="Innovative epoxy floor designs" onerror="this.style.display='none'" />
+            <div class="hero-card-img-icon">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
           </div>
           <span class="hero-card-cat">Garage flooring</span>
           <h3 class="hero-card-title">Innovative designs</h3>
@@ -489,7 +510,9 @@
 
         <div class="hero-card">
           <div class="hero-card-img c3">
-            <img src="hero-3.jpg" alt="Scalable epoxy flooring solutions" onerror="this.style.display='none'" />
+            <div class="hero-card-img-icon">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
           </div>
           <span class="hero-card-cat">Garage flooring</span>
           <h3 class="hero-card-title">Scalable solutions</h3>
@@ -514,11 +537,11 @@
         </div>
         <div class="trust-item">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1 & 2 Day Installation
+          1-Day Installation
         </div>
         <div class="trust-item">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          10-Year Warranty
+          5-Year Warranty
         </div>
         <div class="trust-item">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -554,27 +577,28 @@
             <div class="why-point">
               <div class="why-point-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
               <div>
-                <h4>Done in 1 or 2 Days</h4>
-                <p>Most residential garages are fully coated and ready within 1–2 days of our arrival.</p>
+                <h4>Done in One Day</h4>
+                <p>Most residential garages are fully coated and ready within 24 hours of our arrival.</p>
               </div>
             </div>
             <div class="why-point">
               <div class="why-point-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
               <div>
-                <h4>10-Year Warranty</h4>
+                <h4>5-Year Warranty</h4>
                 <p>If it peels, chips, or fails, we come back and fix it. Period.</p>
               </div>
             </div>
           </div>
         </div>
         <div class="why-stats reveal">
-          <div class="stat-card featured">
-            <div class="stat-num">10</div>
+          <div class="stat-card">
+            <div class="stat-num">5</div>
             <div class="stat-desc">Year warranty on every install</div>
+
           </div>
-          <div class="stat-card featured">
-            <div class="stat-num">1–2</div>
-            <div class="stat-desc">Day installs, start to finish</div>
+          <div class="stat-card">
+            <div class="stat-num">1</div>
+            <div class="stat-desc">Day from start to finish</div>
           </div>
         </div>
       </div>
@@ -611,14 +635,10 @@
           <p>Ready for light use next day, fully cured in 72 hours. Drive in and enjoy.</p>
         </div>
       </div>
-      <!-- Diamond grinding prep photo -->
-      <div class="process-photo reveal">
-        <img src="process-prep.jpg" alt="Diamond grinding floor preparation" onerror="this.parentElement.style.display='none'" />
-      </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
+  <!-- GALLERY — 10 real photos -->
   <section class="gallery" id="gallery">
     <div class="container">
       <div class="gallery-header reveal">
@@ -628,27 +648,89 @@
         </div>
         <p>Real jobs. Real results.</p>
       </div>
+
       <div class="gallery-grid reveal">
-        <div class="g-item">
-          <img src="gallery-1.jpg" alt="Epoxy floor — open garage after install" />
+
+        <!-- 1 – Large feature (spans 2 rows) -->
+        <div class="g-item g-featured">
+          <img src="gallery-1.jpg" alt="Gray flake epoxy garage floor — wide view"
+               onerror="this.style.display='none'" />
           <div class="g-overlay"></div>
+          <div class="g-caption">Gray &amp; White Flake System</div>
         </div>
+
+        <!-- 2 -->
         <div class="g-item">
-          <img src="gallery-2.jpg" alt="Light gray flake epoxy floor" />
+          <img src="gallery-2.jpg" alt="Dark charcoal flake epoxy floor"
+               onerror="this.style.display='none'" />
           <div class="g-overlay"></div>
+          <div class="g-caption">Charcoal Flake System</div>
         </div>
+
+        <!-- 3 -->
         <div class="g-item">
-          <img src="gallery-3.jpg" alt="Dark charcoal epoxy floor" />
+          <img src="gallery-3.jpg" alt="Light gray flake epoxy floor"
+               onerror="this.style.display='none'" />
           <div class="g-overlay"></div>
+          <div class="g-caption">Light Gray Flake Finish</div>
         </div>
+
+        <!-- 4 -->
         <div class="g-item">
-          <img src="gallery-4.jpg" alt="Epoxy floor texture close-up" />
+          <img src="gallery-4.jpg" alt="Blue flake epoxy floor"
+               onerror="this.style.display='none'" />
           <div class="g-overlay"></div>
+          <div class="g-caption">Blue Flake System</div>
         </div>
+
+        <!-- 5 -->
         <div class="g-item">
-          <img src="gallery-5.jpg" alt="Large garage epoxy flooring" />
+          <img src="gallery-5.jpg" alt="Gray flake commercial epoxy floor"
+               onerror="this.style.display='none'" />
           <div class="g-overlay"></div>
+          <div class="g-caption">Commercial Gray Flake</div>
         </div>
+
+        <!-- 6 -->
+        <div class="g-item">
+          <img src="gallery-6.jpg" alt="Gray flake epoxy in organized garage"
+               onerror="this.style.display='none'" />
+          <div class="g-overlay"></div>
+          <div class="g-caption">Residential Garage — Flake</div>
+        </div>
+
+        <!-- 7 -->
+        <div class="g-item">
+          <img src="gallery-7.jpg" alt="Metallic gray glossy epoxy floor"
+               onerror="this.style.display='none'" />
+          <div class="g-overlay"></div>
+          <div class="g-caption">Metallic Epoxy Finish</div>
+        </div>
+
+        <!-- 8 -->
+        <div class="g-item">
+          <img src="gallery-8.jpg" alt="Blue flake epoxy workshop floor"
+               onerror="this.style.display='none'" />
+          <div class="g-overlay"></div>
+          <div class="g-caption">Blue Flake Workshop</div>
+        </div>
+
+        <!-- 9 — wide, spans 2 cols -->
+        <div class="g-item g-wide">
+          <img src="gallery-9.jpg" alt="Multi-color flake epoxy floor"
+               onerror="this.style.display='none'" />
+          <div class="g-overlay"></div>
+          <div class="g-caption">Multi-Color Flake System</div>
+        </div>
+
+        <!-- 10 -->
+        <div class="g-item">
+          <img src="gallery-10.jpg" alt="Solid white gloss epoxy garage floor"
+               onerror="this.style.display='none'" />
+          <div class="g-overlay"></div>
+          <div class="g-caption">Solid Gloss White Finish</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -714,11 +796,11 @@
           <div class="contact-details">
             <div class="contact-detail">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.55 5.55l1.07-.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
-              <span>636-626-0015</span>
+              <span>(555) 000-0000</span>
             </div>
             <div class="contact-detail">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <span>Rescano@rockshieldepoxycoating.com</span>
+              <span>info@rockshieldepoxy.com</span>
             </div>
             <div class="contact-detail">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -727,30 +809,30 @@
           </div>
         </div>
         <div class="reveal">
-          <form class="contact-form" action="https://formspree.io/f/xaqkqllg" method="POST">
+          <form class="contact-form" onsubmit="handleSubmit(event)">
             <div class="form-row">
               <div class="form-group">
                 <label>First Name</label>
-                <input type="text" name="first_name" placeholder="John" required />
+                <input type="text" placeholder="John" />
               </div>
               <div class="form-group">
                 <label>Last Name</label>
-                <input type="text" name="last_name" placeholder="Smith" />
+                <input type="text" placeholder="Smith" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label>Phone</label>
-                <input type="tel" name="phone" placeholder="(555) 123-4567" />
+                <input type="tel" placeholder="(555) 123-4567" />
               </div>
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" placeholder="john@example.com" required />
+                <input type="email" placeholder="john@example.com" />
               </div>
             </div>
             <div class="form-group">
               <label>Garage Size</label>
-              <select name="garage_size">
+              <select>
                 <option value="">Select size...</option>
                 <option>1-Car Garage (approx. 200 sq ft)</option>
                 <option>2-Car Garage (approx. 400 sq ft)</option>
@@ -760,7 +842,7 @@
             </div>
             <div class="form-group">
               <label>Finish Type</label>
-              <select name="finish_type">
+              <select>
                 <option value="">Select finish...</option>
                 <option>Solid Color Epoxy</option>
                 <option>Flake / Chip System</option>
@@ -770,9 +852,9 @@
             </div>
             <div class="form-group">
               <label>Additional Details</label>
-              <textarea name="message" placeholder="Tell us about your floor: any cracks, stains, existing coatings, or anything else we should know..."></textarea>
+              <textarea placeholder="Tell us about your floor: any cracks, stains, existing coatings, or anything else we should know..."></textarea>
             </div>
-            <button type="submit" class="form-submit">Request Free Quote</button>
+            <button type="submit" class="form-submit" id="submit-btn">Request Free Quote</button>
           </form>
         </div>
       </div>
@@ -785,7 +867,7 @@
       <div class="footer-inner">
         <div class="footer-logo">
           <img src="rockshield-logo.png" alt="RockShield Epoxy Coating"
-            onerror="this.style.display='none';document.querySelector('.footer-logo-fallback').style.display='block'" />
+            onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <div class="footer-logo-fallback" style="display:none;">Rock<span>Shield</span></div>
         </div>
         <nav class="footer-nav">
@@ -794,6 +876,10 @@
           <a href="#process">Process</a>
           <a href="#gallery">Gallery</a>
           <a href="#contact">Contact</a>
+          <a href="https://www.facebook.com/rockshieldepoxy" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
         </nav>
       </div>
       <div class="footer-bottom">
